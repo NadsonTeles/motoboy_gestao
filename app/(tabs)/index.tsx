@@ -1,74 +1,74 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import ThemedText from '@/components/ThemedText';
+import ThemedView from '@/components/ThemedView';
 
-export default function HomeScreen() {
+export default function DashboardScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ThemedView style={styles.container}>
+      <View style={styles.cardsContainer}>
+        <ThemedView style={styles.card}>
+          <MaterialCommunityIcons name="cash" size={32} color="#4CAF50" />
+          <ThemedText style={styles.cardValue}>R$ 1.250,00</ThemedText>
+          <ThemedText style={styles.cardLabel}>Ganhos do Mês</ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <MaterialCommunityIcons name="gas-station" size={32} color="#F44336" />
+          <ThemedText style={styles.cardValue}>R$ 350,00</ThemedText>
+          <ThemedText style={styles.cardLabel}>Gastos com Combustível</ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <MaterialCommunityIcons name="bike" size={32} color="#2196F3" />
+          <ThemedText style={styles.cardValue}>150 km</ThemedText>
+          <ThemedText style={styles.cardLabel}>Distância Percorrida</ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.card}>
+          <MaterialCommunityIcons name="package-variant" size={32} color="#FF9800" />
+          <ThemedText style={styles.cardValue}>45</ThemedText>
+          <ThemedText style={styles.cardLabel}>Entregas Realizadas</ThemedText>
+        </ThemedView>
+      </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    padding: 16,
+  },
+  cardsContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 16,
+  },
+  card: {
+    padding: 16,
+    borderRadius: 12,
+    width: '47%',
     alignItems: 'center',
-    gap: 8,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  cardValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  cardLabel: {
+    fontSize: 14,
+    textAlign: 'center',
+    marginTop: 4,
   },
 });

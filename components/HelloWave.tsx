@@ -1,40 +1,65 @@
-import { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withTiming,
-  withRepeat,
-  withSequence,
-} from 'react-native-reanimated';
+import React from 'react';
+import { Animated, StyleSheet, ViewStyle } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { ThemedText } from '@/components/ThemedText';
-
-export function HelloWave() {
-  const rotationAnimation = useSharedValue(0);
-
-  useEffect(() => {
-    rotationAnimation.value = withRepeat(
-      withSequence(withTiming(25, { duration: 150 }), withTiming(0, { duration: 150 })),
-      4 // Run the animation 4 times
-    );
-  }, []);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${rotationAnimation.value}deg` }],
-  }));
-
-  return (
-    <Animated.View style={animatedStyle}>
-      <ThemedText style={styles.text}>👋</ThemedText>
-    </Animated.View>
-  );
+interface HelloWaveProps {
+  style?: ViewStyle;
+  size?: number;
+  color?: string;
 }
 
+const HelloWave = ({ style, size = 24, color = '#000' }: HelloWaveProps) => {
+  const rotateAnim = new Animated.Value(0);
+
+  React.useEffect(() => {
+    const animate = () => {
+      Animated.sequence([
+        Animated.timing(rotateAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(rotateAnim, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
+        setTimeout(animate, 2000);
+      });
+    };
+
+    animate();
+
+    return () => {
+      rotateAnim.setValue(0);
+    };
+  }, []);
+
+  const spin = rotateAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '30deg'],
+  });
+
+  return (
+    <Animated.View
+      style={[
+        styles.container,
+        style,
+        {
+          transform: [{ rotate: spin }],
+        },
+      ]}>
+      <MaterialCommunityIcons name="hand-wave" size={size} color={color} />
+    </Animated.View>
+  );
+};
+
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 28,
-    lineHeight: 32,
-    marginTop: -6,
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
+
+export default HelloWave; 
