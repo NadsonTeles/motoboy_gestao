@@ -1,43 +1,20 @@
-# Welcome to your Expo app 👋
+# Motoboy Gestão
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Projeto mobile para gestão de motoboys, desenvolvido em React Native com Expo. O objetivo é facilitar o controle de gastos, ganhos e rotinas diárias dos entregadores.
 
-## Get started
+## O que foi feito
+- Estruturação inicial do projeto mobile
+- Tela de registro diário funcional (gastos e ganhos)
+- Integração com banco de dados local (SQLite)
+- Navegação entre telas
+- Componentização e estilização básica
 
-1. Install dependencies
+## O que falta fazer
+- Finalizar funcionalidades principais (cadastro, relatórios, autenticação)
+- Integração com backend
+- Testes e publicação
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
+O desenvolvimento foi pausado para focar em outros projetos, mas serviu como aprendizado em mobile e gestão de dados.
 
 - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
 - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
